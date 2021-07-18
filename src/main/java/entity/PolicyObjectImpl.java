@@ -4,11 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PolicyObjectImpl implements PolicyObject{
+    private String name;
     private List<SubObject> subObjects = new ArrayList<>();
+
+    public PolicyObjectImpl(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     @Override
     public void addSubObject(SubObject subObject) {
-        // TODO validate
         subObjects.add(subObject);
     }
 

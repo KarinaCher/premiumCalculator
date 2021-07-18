@@ -1,9 +1,6 @@
 package service;
 
-import entity.Policy;
-import entity.PolicyImpl;
-import entity.PolicyObjectImpl;
-import entity.SubObjectImpl;
+import entity.*;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -22,17 +19,17 @@ class PremiumCalculatorTest {
      * Risk type = FIRE, Sum insured = 100.00
      * Risk type = THEFT, Sum insured = 8.00
      */
-
     @Test
     public void testAC1() {
-        Policy policy = new PolicyImpl();
-        policy.addObject(new PolicyObjectImpl());
-        policy.getObjects().get(0).addSubObject(new SubObjectImpl(FIRE, new BigDecimal(100))); //0.024 2.4
-        policy.getObjects().get(0).addSubObject(new SubObjectImpl(THEFT, new BigDecimal(8))); //0.11
+        Policy policy = new PolicyImpl("LV20-02-100000-5");
+        PolicyObject policyObject = new PolicyObjectImpl("House");
+        policyObject.addSubObject(new SubObjectImpl("TV", FIRE, new BigDecimal(100)));
+        policyObject.addSubObject(new SubObjectImpl("Laptop", THEFT, new BigDecimal(8)));
+        policy.addObject(policyObject);
 
-        BigDecimal actual = calculator.calculate(policy);
+        BigDecimal policyPremium = calculator.calculate(policy);
 
-        assertEquals(new BigDecimal(2.28).setScale(2, RoundingMode.HALF_DOWN), actual);
+        assertEquals(new BigDecimal(2.28).setScale(2, RoundingMode.HALF_DOWN), policyPremium);
     }
 
     /**
@@ -44,14 +41,15 @@ class PremiumCalculatorTest {
      */
     @Test
     public void testAC2() {
-        Policy policy = new PolicyImpl();
-        policy.addObject(new PolicyObjectImpl());
-        policy.getObjects().get(0).addSubObject(new SubObjectImpl(FIRE, new BigDecimal(500)));
-        policy.getObjects().get(0).addSubObject(new SubObjectImpl(THEFT, new BigDecimal(102.51)));
+        Policy policy = new PolicyImpl("LV20-02-100000-5");
+        PolicyObject policyObject = new PolicyObjectImpl("House");
+        policyObject.addSubObject(new SubObjectImpl("TV", FIRE, new BigDecimal(500)));
+        policyObject.addSubObject(new SubObjectImpl("Laptop", THEFT, new BigDecimal(102.51)));
+        policy.addObject(policyObject);
 
-        BigDecimal actual = calculator.calculate(policy);
+        BigDecimal policyPremium = calculator.calculate(policy);
 
-        assertEquals(new BigDecimal(17.13).setScale(2, RoundingMode.HALF_DOWN), actual);
+        assertEquals(new BigDecimal(17.13).setScale(2, RoundingMode.HALF_DOWN), policyPremium);
     }
 
 }
