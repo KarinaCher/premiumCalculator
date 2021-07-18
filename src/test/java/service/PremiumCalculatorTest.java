@@ -24,7 +24,7 @@ class PremiumCalculatorTest {
         Policy policy = new PolicyImpl("LV20-02-100000-5");
         PolicyObject policyObject = new PolicyObjectImpl("House");
         policyObject.addSubObject(new SubObjectImpl("TV", FIRE, new BigDecimal(100)));
-        policyObject.addSubObject(new SubObjectImpl("Laptop", THEFT, new BigDecimal(8)));
+        policyObject.addSubObject(new SubObjectImpl("TV", THEFT, new BigDecimal(8)));
         policy.addObject(policyObject);
 
         BigDecimal policyPremium = calculator.calculate(policy);
