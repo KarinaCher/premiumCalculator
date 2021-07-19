@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PolicyObjectImpl implements PolicyObject{
-    private String name;
+    private final String name;
     private List<SubObject> subObjects = new ArrayList<>();
 
     public PolicyObjectImpl(String name) {

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class PolicyImpl implements Policy {
-    private String number;
+    private final String number;
     private Status status;
     private List<PolicyObject> objects = new ArrayList<>();
 

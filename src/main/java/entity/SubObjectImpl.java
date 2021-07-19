@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 
 public class SubObjectImpl implements SubObject {
 
-    private String name;
-    private Risk risk;
-    private BigDecimal sumInsured;
+    private final String name;
+    private final Risk risk;
+    private final BigDecimal sumInsured;
 
     public SubObjectImpl(String name, Risk risk, BigDecimal sumInsured) {
         this.name = name;
